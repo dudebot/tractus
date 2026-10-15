@@ -1,0 +1,6 @@
+{
+  "target": "T1",
+  "n_frames": 15,
+  "frication": false,
+  "description": "vowel /a/->/i/->/u/ triangle, cosine blend, F0=120"
+}

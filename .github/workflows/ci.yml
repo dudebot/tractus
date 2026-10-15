@@ -1,0 +1,93 @@
+name: ci
+
+# Triggers per workplan/tasks/00_infra/002_ci_guardrails.md:
+#   "runs on every PR + push to master".
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+# Permissions are read-only — this workflow does not write to the repo.
+permissions:
+  contents: read
+
+# Cancel in-flight runs of the same ref when a new push lands.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: lint guardrails
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Audit tracked files and Git history for private details
+        env:
+          TRACTUS_PRIVATE_IDENTIFIER_HASHES: ${{ secrets.TRACTUS_PRIVATE_IDENTIFIER_HASHES }}
+        run: python3 scripts/ci/lint_privacy.py --all-history
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Make lint scripts executable
+        run: chmod +x scripts/ci/lint_all.sh scripts/ci/*.py
+
+      # The lint slice is dependency-light: stdlib + the local
+      # tractus_shared package (for the consent-rule smoke). We install
+      # tractus_shared *only*; the heavy JAX/scipy stacks are not needed
+      # for any lint script.
+      - name: Install tractus_shared (consent validator only)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e tractus_shared
+
+      - name: Run lint guardrails
+        run: bash scripts/ci/lint_all.sh
+
+  pytest:
+    name: pytest guardrails (default fp32 slice)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install workspace (editable)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e tractus_shared
+          pip install -e tractus_controller
+          pip install -e tractus_engine_advanced
+          pip install pytest pytest-xdist
+
+      # Default slice excludes parity / fp64_oracle by design — see
+      # tractus_engine_advanced/pyproject.toml [tool.pytest.ini_options].
+      # Parity tests run in subprocess isolation under tests/ when needed.
+      - name: tractus_engine_advanced unit tests
+        run: pytest -q tractus_engine_advanced/tests
+
+      - name: tractus_controller unit tests
+        run: pytest -q tractus_controller/tests
+
+      - name: CI guardrail meta-tests
+        run: pytest -q tests/ci
+
+  # The "full_ablation" inversion-driven slice is intentionally OFF this
+  # PR-critical-path workflow (per task spec item 5). It will land in a
+  # separate nightly workflow once inversion/006 closes.

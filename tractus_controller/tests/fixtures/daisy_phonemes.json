@@ -1,0 +1,18 @@
+{
+  "phrase": "Daisy, Daisy, give me your answer do",
+  "arpabet_with_stress": [
+    "D", "EY1", "Z", "IY0",
+    "D", "EY1", "Z", "IY0",
+    "G", "IH1", "V",
+    "M", "IY0",
+    "Y", "AO1", "R",
+    "AE1", "N", "S", "ER0",
+    "D", "UW1"
+  ],
+  "phoneme_set_unstressed": [
+    "D", "EY", "Z", "IY", "G", "IH", "V",
+    "M", "Y", "AO", "R", "AE", "N", "S", "ER", "UW"
+  ],
+  "word_boundaries_after": [3, 7, 10, 12, 15, 19],
+  "_comment": "Canonical reference for the 'Daisy, Daisy' regression anchor (ARCH §10 P1). word_boundaries_after lists the indices into arpabet_with_stress AFTER which a word ends (so ['Daisy', 'Daisy', 'give', 'me', 'your', 'answer', 'do'] = 7 words = 6 internal boundaries, plus the implicit final boundary)."
+}

@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-07-07T18:43:57+00:00",
+  "config": {
+    "iters": 20,
+    "seeds": 1,
+    "duration_s": 0.3,
+    "smoke": true
+  },
+  "targets": {
+    "T1": {
+      "wav": "task009_results/smoke/targets/T1_target.wav",
+      "gt": "task009_results/smoke/targets/T1_gt.npz",
+      "n_frames": 15,
+      "frication": false
+    },
+    "T2": {
+      "wav": "task009_results/smoke/targets/T2_target.wav",
+      "gt": "task009_results/smoke/targets/T2_gt.npz",
+      "n_frames": 15,
+      "frication": true
+    }
+  },
+  "per_seed_metrics": {
+    "T1": [
+      {
+        "seed": 0,
+        "final_acoustic": 1.5170918703079224,
+        "init_acoustic": 2.2950778007507324,
+        "plateaued": false,
+        "tail_descent_frac": null,
+        "mr_stft_dist": 0.4520807840434541,
+        "log_area_mae": 1.0009236335754395,
+        "position_error_sections": 27.0,
+        "max_area_error_cm2": 0.09111733734607697,
+        "fricative_event_recall": null
+      }
+    ],
+    "T2": [
+      {
+        "seed": 0,
+        "final_acoustic": 5.941882133483887,
+        "init_acoustic": 5.965117454528809,
+        "plateaued": false,
+        "tail_descent_frac": null,
+        "mr_stft_dist": 1.2553900210073856,
+        "log_area_mae": 0.9043843746185303,
+        "position_error_sections": 12.0,
+        "max_area_error_cm2": 0.4575132131576538,
+        "fricative_event_recall": 0.3333333333333333
+      }
+    ]
+  },
+  "verdict": "FAILED_ACOUSTIC_RECOVERY",
+  "interpretation": "A4 strengthened \u2014 but FAILED cannot distinguish fundamental non-uniqueness from a stuck discrete-bin optimizer. Check seed consistency (consistent=manifold, divergent=optimizer) before committing to SPARC.",
+  "per_target": {
+    "T1": {
+      "median_log_area_mae": 1.0009236335754395,
+      "median_position_error": 27.0,
+      "median_max_area_error": 0.09111733734607697,
+      "n_seeds": 1,
+      "all_plateaued": false
+    },
+    "T2": {
+      "median_log_area_mae": 0.9043843746185303,
+      "median_position_error": 12.0,
+      "median_max_area_error": 0.4575132131576538,
+      "n_seeds": 1,
+      "all_plateaued": false
+    }
+  },
+  "plateau_warning_targets": [
+    "T1",
+    "T2"
+  ]
+}

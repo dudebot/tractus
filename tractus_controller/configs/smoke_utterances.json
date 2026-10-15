@@ -1,0 +1,28 @@
+{
+  "_comment": "20 fixed regression utterances for smoke/001. Anchors: 'Daisy, Daisy' (canonical), pangrams, fricative-heavy phrases (covering /s/ /sh/ /f/ /th/ /z/ /v/ + aspiration + bursts so correctness/004 frication can reuse), and short prompts that load each manner-of-articulation class. Whisper-WER intelligibility gate is smoke/002 — these utterances are render-target inputs, NOT a quality oracle yet.",
+  "utterances": [
+    {"id": "daisy",         "text": "Daisy, Daisy, give me your answer do."},
+    {"id": "pangram_quick", "text": "The quick brown fox jumps over the lazy dog."},
+    {"id": "pangram_jack",  "text": "Pack my box with five dozen liquor jugs."},
+    {"id": "pangram_zebra", "text": "Sphinx of black quartz, judge my vow."},
+
+    {"id": "fric_s_heavy",  "text": "She sells seashells by the seashore."},
+    {"id": "fric_sh_heavy", "text": "Pushed sushi shops shut shop yesterday."},
+    {"id": "fric_f_heavy",  "text": "Fluffy feathers fall on fresh fields."},
+    {"id": "fric_th_heavy", "text": "The three thieves thought through their theft."},
+    {"id": "fric_z_heavy",  "text": "Lazy bees buzz noisily in the breeze."},
+    {"id": "fric_v_heavy",  "text": "Vivid violets vie above velvet vines."},
+    {"id": "asp_h_heavy",   "text": "How high are the hopeful happy hounds?"},
+
+    {"id": "stops_p",       "text": "Peter Piper picked a peck of pickled peppers."},
+    {"id": "stops_t",       "text": "Tutored Toby took two trains to town."},
+    {"id": "stops_k",       "text": "Kindly cookies came quick to the kitchen."},
+    {"id": "stops_b",       "text": "Big black bugs bleed blue blood."},
+    {"id": "stops_dg",      "text": "Dazzling dolphins drift down deep dark waters."},
+
+    {"id": "nasal_m",       "text": "Many mornings my mother makes muffins."},
+    {"id": "nasal_n",       "text": "Nine nimble nuns nodded near the noon bell."},
+    {"id": "approx_lrwy",   "text": "Yellow rabbits whirl rapidly along leafy lanes."},
+    {"id": "diphthongs",    "text": "Sound choice, voice loud and clear, ride the wave."}
+  ]
+}

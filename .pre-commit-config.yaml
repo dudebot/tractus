@@ -1,0 +1,55 @@
+# Pre-commit hook for cheap lint-only guardrails (acceptance gate #4 of
+# infra/002). Heavier pytest gates live in CI, not here — local pre-commit
+# must stay fast.
+#
+# Install once:
+#   pip install pre-commit
+#   pre-commit install
+#
+# Skip on a single commit (rarely; the git-side guard re-checks at push):
+#   git commit --no-verify
+
+repos:
+  - repo: local
+    hooks:
+      - id: privacy
+        name: private-environment guard
+        entry: python scripts/ci/lint_privacy.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: surrogate-call-ban
+        name: surrogate-call ban (ARCH §1663-1664)
+        entry: python scripts/ci/lint_surrogate_ban.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: non-circularity
+        name: non-circularity rule (ARCH §445-456)
+        entry: python scripts/ci/lint_non_circularity.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: doc-coherence
+        name: doc-coherence regression lint (ARCH §1699-1703)
+        entry: python scripts/ci/lint_doc_coherence.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: reference-pack
+        name: reference-pack hygiene (ARCH §1706-1711)
+        entry: python scripts/ci/lint_reference_pack.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: consent-rule
+        name: consent-rule manifest validator smoke (ARCH §1687-1692)
+        entry: python scripts/ci/lint_consent.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]

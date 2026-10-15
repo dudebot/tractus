@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tractus.local/schemas/whisper_gate.schema.json",
+  "title": "whisper_gate report",
+  "type": "object",
+  "required": ["wer", "jaccard", "asr_text", "pass"],
+  "properties": {
+    "wer": {"type": "number", "minimum": 0.0},
+    "jaccard": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+    "asr_text": {"type": "string"},
+    "pass": {"type": "boolean"},
+    "threshold_wer": {"type": "number"},
+    "threshold_jaccard": {"type": "number"},
+    "error": {"type": "string"}
+  },
+  "additionalProperties": false
+}

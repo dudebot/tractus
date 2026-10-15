@@ -1,0 +1,74 @@
+# tractus workspace .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg
+*.egg-info/
+.eggs/
+
+# venv
+.venv/
+venv/
+env/
+
+# pytest
+.pytest_cache/
+
+# uv
+.uv/
+
+# build artifacts (workspace-level)
+build/
+dist/
+
+# editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# project-specific scratch
+outputs/
+*.wav
+*.npz
+*.npy
+*.pt
+
+# allow checked-in fixtures (none today; future-proof)
+!tractus_controller/tests/fixtures/*.json
+!tractus_controller/tests/fixtures/PROVENANCE.md
+
+# Jupyter
+.ipynb_checkpoints/
+
+# logs
+*.log
+
+# References — PDFs and dataset blobs are mirrored locally for
+# offline reading / training; the README.md and
+# pages/reference_links.md are the tracked source of truth. Binary
+# payloads are not committed (license caution + size).
+docs/references/**/*.pdf
+docs/references/**/*.tar.gz
+docs/references/**/*.tgz
+docs/references/**/*.zip
+docs/references/datasets/**
+!docs/references/datasets/.gitkeep
+!docs/references/datasets/README.md
+.claude/
+
+# Private operational material
+machines/
+.ssh/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.bundle

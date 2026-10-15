@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tractus-controller"
+version = "0.0.0"
+description = "Physics-first TTS controller: phonemizer, learned motor policy, gradient fitter, CLI."
+requires-python = ">=3.11,<3.13"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "dudebot" }]
+dependencies = [
+    "numpy>=1.26,<3",
+    "scipy>=1.11,<2",
+    "soundfile>=0.12,<1",
+    "pyyaml>=6,<7",
+    "tqdm>=4.66",
+    "rich>=13.7",
+    "einops>=0.7",
+    "typer>=0.12,<1",
+    "phonemizer==3.3.0",
+    "optuna>=3.6,<5",
+    # Sibling workspace package (consent-bearing manifest schema +
+    # frozen-fixture parsers per ARCH §1075). Path-based editable dep
+    # so `uv sync` installs it on a fresh checkout without a separate
+    # `uv pip install -e ../tractus_shared` step. See CLAUDE.md
+    # move-to-another-machine checklist.
+    "tractus_shared",
+]
+
+[tool.uv.sources]
+tractus_shared = { path = "../tractus_shared", editable = true }
+
+[project.optional-dependencies]
+torch = [
+    "torch>=2.7,<3",
+    "torchaudio>=2.7,<3",
+    "pybind11>=2.12",
+]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "ruff>=0.5",
+    "black>=24",
+]
+# CUDA-enabled JAX uses the pinned, bundled CUDA 12 dependencies.
+# Check driver compatibility and compiler availability on the target environment.
+jax = [
+    "jax==0.10.0",
+    "jaxlib==0.10.0",
+    "jax-cuda12-pjrt==0.10.0",
+    "jax-cuda12-plugin[with-cuda]==0.10.0",
+]
+
+[project.scripts]
+tractus-controller = "tractus_controller.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tractus_controller*"]
+exclude = ["tests*", "external*", "build*"]
+
+[tool.setuptools.package-data]
+tractus_controller = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Default slice excludes parity/fp64 tests so `pytest -q` runs only
+# fp32-default tests. Parity tests run in subprocess isolation
+# (see tests/conftest.py) to avoid leaking jax_enable_x64=True into
+# any other test's process.
+addopts = "-ra -q -m 'not parity and not fp64_oracle'"
+markers = [
+    "espeak: requires espeak-ng installed (skipped if missing)",
+    "torch: requires PyTorch installed (skipped if missing)",
+    "slow: integration tests that run real renders / Whisper decode",
+    "parity: parity test against saved fp64 fixture (runs in isolated subprocess; opts-in to jax_enable_x64=True)",
+    "fp64_oracle: any other test that requires jax_enable_x64=True; must be subprocess-isolated",
+    "fp32_default: assertion that jax.config.x64_enabled is False under default config",
+    "gradient_fd: SOTA marker — full gradient finite-difference check (implementation in correctness/003)",
+    "energy_conservation: SOTA marker — energy-conservation invariant (helper in correctness/002)",
+    "m6_soft: soft-mode gradient stability + per-module FD agreement (correctness/003)",
+    "gesture_event: GestureEvent composition / dataclass-contract tests (blocked on correctness/004 / pretraining/003)",
+    "wall_static: wall-param anatomy-static enforcement (blocked on correctness/004)",
+    "frication_physical: frication physical-derivation tests (blocked on correctness/004)",
+    "channel_identifiability: channel-model identifiability ablation (blocked on infra/002 + pretraining/004)",
+    "non_circularity: non-circularity rule on body-model training (blocked on infra/002)",
+    "cheat_channel: cheat-channel ablation gate (blocked on infra/002)",
+    "fixture_oracle: re-tooled parity tests using saved fixtures only (no live oracle)",
+    "smoke: smoke/001 rule-based text->audio pipeline tests (front-half scaffolding; intelligibility gate gated on P0 close)",
+]

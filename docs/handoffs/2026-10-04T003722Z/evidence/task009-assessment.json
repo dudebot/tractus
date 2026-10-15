@@ -1,0 +1,58 @@
+{
+  "source_sha256": "421570af49272407f64bd091a4914a18dfff5bf1cb81346dc94df745c1ccfa06",
+  "historical_config": {
+    "iters": 20,
+    "seeds": 1,
+    "duration_s": 0.3,
+    "smoke": true
+  },
+  "historical_verdict": "FAILED_ACOUSTIC_RECOVERY",
+  "historical_converged": false,
+  "controls_are_synthetic_rows_not_new_model_measurements": true,
+  "one_target_one_unconverged_seed": {
+    "verdict": "PROVEN_ACOUSTIC_SUFFICIENCY",
+    "interpretation": "A4 falsified \u2014 acoustic-only inversion recovered known articulation. SPARC optional.",
+    "per_target": {
+      "T1": {
+        "median_log_area_mae": 0.1,
+        "median_position_error": 1.0,
+        "median_max_area_error": 0.1,
+        "n_seeds": 1,
+        "all_plateaued": false
+      }
+    },
+    "plateau_warning_targets": [
+      "T1"
+    ]
+  },
+  "median_hides_one_failed_seed": {
+    "verdict": "PROVEN_ACOUSTIC_SUFFICIENCY",
+    "interpretation": "A4 falsified \u2014 acoustic-only inversion recovered known articulation. SPARC optional.",
+    "per_target": {
+      "T1": {
+        "median_log_area_mae": 0.1,
+        "median_position_error": 1.0,
+        "median_max_area_error": 0.1,
+        "n_seeds": 3,
+        "all_plateaued": false
+      },
+      "T2": {
+        "median_log_area_mae": 0.1,
+        "median_position_error": 1.0,
+        "median_max_area_error": 0.1,
+        "n_seeds": 3,
+        "all_plateaued": false
+      }
+    },
+    "plateau_warning_targets": [
+      "T1",
+      "T2"
+    ]
+  },
+  "missing_tracked_artifacts": [
+    "task009_results/smoke/targets/T1_target.wav",
+    "task009_results/smoke/targets/T1_gt.npz",
+    "task009_results/smoke/targets/T2_target.wav",
+    "task009_results/smoke/targets/T2_gt.npz"
+  ]
+}

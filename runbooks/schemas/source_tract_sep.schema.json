@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tractus.local/schemas/source_tract_sep.schema.json",
+  "title": "source_tract_sep report",
+  "type": "object",
+  "required": ["axes", "pass"],
+  "properties": {
+    "axes": {
+      "type": "object",
+      "properties": {
+        "f0_rmse_cents": {"type": "number"},
+        "tilt_db_per_oct_diff": {"type": "number"},
+        "frication_band_db_diff": {
+          "type": "object",
+          "additionalProperties": {"type": "number"}
+        },
+        "nasal_metric_diff": {"type": "number"},
+        "formant_pct_diff": {"type": "array", "items": {"type": "number"}}
+      }
+    },
+    "axis_pass": {
+      "type": "object",
+      "additionalProperties": {"type": "boolean"}
+    },
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": {"type": "number"}
+    },
+    "pass": {"type": "boolean"},
+    "error": {"type": "string"}
+  },
+  "additionalProperties": false
+}

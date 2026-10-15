@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Build artifacts
+build/
+dist/
+*.so
+*.dylib
+*.dll
+!tests/fixtures/**/*.so
+!tests/fixtures/**/*.dylib
+!tests/fixtures/**/*.dll
+
+# Virtualenvs
+.venv/
+venv/
+env/
+
+# Editor/OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Outputs (generated WAVs etc.)
+outputs/
+*.wav
+!tests/fixtures/**/*.wav
+
+# Local-only configuration
+.env
+.env.local

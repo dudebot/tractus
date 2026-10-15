@@ -1,0 +1,118 @@
+{
+  "checked_at": "2026-10-04T01:40:45.287288+00:00",
+  "repositories": [
+    {
+      "repository": "Altavo/tensortract2",
+      "head": "dae4e59d4186066a6a44afb9d341775a6099592a",
+      "default_branch": "main",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "root_files": [
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "setup.py",
+        "tensortract2"
+      ],
+      "license_files": [
+        "Altavo--tensortract2--LICENSE"
+      ]
+    },
+    {
+      "repository": "TensorTract3/TensorTract3.github.io",
+      "head": "62c511216d5f742fc18de3cdad2c0a302440ca27",
+      "default_branch": "main",
+      "license_metadata": null,
+      "root_files": [
+        "_config.yml",
+        "_layouts",
+        "audio_examples",
+        "index.md"
+      ],
+      "license_files": []
+    },
+    {
+      "repository": "Berkeley-Speech-Group/Speech-Articulatory-Coding",
+      "head": "d59139be64cdbd5a6cb76c73fda00af0d0e97e59",
+      "default_branch": "main",
+      "license_metadata": null,
+      "root_files": [
+        ".gitignore",
+        "README.md",
+        "configs",
+        "files",
+        "images",
+        "notebooks",
+        "sample_audio",
+        "scripts",
+        "setup.py",
+        "sparc"
+      ],
+      "license_files": []
+    },
+    {
+      "repository": "TUD-STKS/VocalTractLabBackend-dev",
+      "head": "df30392f18dc5e175b577c3ba734caaa65a3927f",
+      "default_branch": "main",
+      "license_metadata": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      },
+      "root_files": [
+        ".gitattributes",
+        ".github",
+        ".gitignore",
+        "CMakeLists.txt",
+        "CMakeSettings.json",
+        "CODEOWNERS",
+        "LICENSE",
+        "README.md",
+        "build",
+        "examples",
+        "include",
+        "resources",
+        "src",
+        "test"
+      ],
+      "license_files": [
+        "TUD-STKS--VocalTractLabBackend-dev--LICENSE"
+      ]
+    },
+    {
+      "repository": "lee-jhwn/arti-6",
+      "head": "c61055d2b49a4ae4a7ca98b008ec7305b6ab9712",
+      "default_branch": "main",
+      "license_metadata": null,
+      "root_files": [
+        "README.md",
+        "arti6",
+        "docs",
+        "env_mac.yml",
+        "example.py",
+        "example_arti6.wav",
+        "example_gt.wav"
+      ],
+      "license_files": []
+    },
+    {
+      "repository": "tensortract-dev/tensortractlab",
+      "head": "49a82ce22f587d52c0cb95f8c53aa77b2d5663b2",
+      "default_branch": "main",
+      "license_metadata": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      }
+    }
+  ]
+}

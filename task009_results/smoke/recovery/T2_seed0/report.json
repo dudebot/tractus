@@ -1,0 +1,228 @@
+{
+  "audio_path": "task009_results/smoke/targets/T2_target.wav",
+  "transcript": "tea-to-tea-synthetic",
+  "sample_rate": 44100,
+  "frame_rate_hz": 50,
+  "n_frames": 15,
+  "n_samples_used": 13230,
+  "n_iters": 20,
+  "n_seeds": 1,
+  "seeds": [
+    0
+  ],
+  "frication_enabled": true,
+  "plateaued": false,
+  "tail_descent_frac": null,
+  "best_seed": 0,
+  "loss_trace": {
+    "best_seed_total": [
+      5.9951934814453125,
+      5.888915538787842,
+      5.985894680023193,
+      5.987396240234375
+    ],
+    "best_seed_acoustic": [
+      5.965117454528809,
+      5.870429039001465,
+      5.941000461578369,
+      5.941882133483887
+    ],
+    "best_seed_smooth_s": [
+      0.02232321724295616,
+      0.024320974946022034,
+      0.023171523585915565,
+      0.023138893768191338
+    ],
+    "best_seed_smooth_t": [
+      6.893841145938495e-06,
+      0.03522143512964249,
+      0.005648739170283079,
+      0.004920803010463715
+    ],
+    "best_seed_curv": [
+      0.009498829022049904,
+      0.009627725929021835,
+      0.009560072794556618,
+      0.009561490267515182
+    ],
+    "best_seed_barrier": [
+      0.0030052480287849903,
+      0.001808413304388523,
+      0.004474720451980829,
+      0.00453701289370656
+    ],
+    "best_seed_default": [
+      4.69546557724243e-06,
+      0.034176625311374664,
+      0.011696326546370983,
+      0.011486368253827095
+    ]
+  },
+  "init_acoustic": 5.965117454528809,
+  "final_acoustic": 5.941882133483887,
+  "init_total": 5.9951934814453125,
+  "final_total": 5.987396240234375,
+  "plausibility": {
+    "clamp_occupancy": 0.0,
+    "max_grad_s": 3.9120230674743652,
+    "max_grad_t": 6.297886371612549
+  },
+  "vowels": {
+    "/u/": {
+      "t_norm": 0.26,
+      "frame_idx": 4,
+      "target": [
+        314,
+        702,
+        2298
+      ],
+      "measured": [
+        0.0,
+        678.2958984375,
+        0.0
+      ],
+      "pct_err": [
+        null,
+        3.3766526442307696,
+        null
+      ],
+      "found": [
+        false,
+        true,
+        false
+      ]
+    },
+    "/i/": {
+      "t_norm": 0.8,
+      "frame_idx": 11,
+      "target": [
+        325,
+        2139,
+        2976
+      ],
+      "measured": [
+        0.0,
+        0.0,
+        2788.5498046875
+      ],
+      "pct_err": [
+        null,
+        null,
+        6.298729681199597
+      ],
+      "found": [
+        false,
+        false,
+        true
+      ]
+    },
+    "/a/": {
+      "t_norm": 0.92,
+      "frame_idx": 13,
+      "target": [
+        694,
+        942,
+        2948
+      ],
+      "measured": [
+        689.0625,
+        0.0,
+        2788.5498046875
+      ],
+      "pct_err": [
+        0.7114553314121037,
+        null,
+        5.408758321319539
+      ],
+      "found": [
+        true,
+        false,
+        true
+      ]
+    }
+  },
+  "gates": {
+    "gate2_loss_improvement": false,
+    "gate2_target_ratio": 0.9961048007483438,
+    "gate3_field_plausibility": false,
+    "gate4_vowel_sanity": false,
+    "gate4_summary": [
+      true,
+      false,
+      false
+    ]
+  },
+  "per_seed": [
+    {
+      "seed": 0,
+      "elapsed_s": 341.0981185436249,
+      "init_total": 5.9951934814453125,
+      "final_total": 5.987396240234375,
+      "init_acoustic": 5.965117454528809,
+      "final_acoustic": 5.941882133483887,
+      "final_diag": {
+        "acoustic": 5.941882133483887,
+        "barrier": 0.00453701289370656,
+        "curv": 0.009561490267515182,
+        "default_dev": 0.011486368253827095,
+        "delta_absmax": 0.25571128726005554,
+        "delta_sat_frac": 0.0,
+        "grad_l2": 1.093804955482483,
+        "smooth_s": 0.023138893768191338,
+        "smooth_t": 0.004920803010463715,
+        "total": 5.987396240234375,
+        "update_l2": 0.061600543558597565,
+        "w_barrier": 0.04537012800574303
+      },
+      "plausibility": {
+        "clamp_occupancy": 0.0,
+        "max_grad_s": 3.9120230674743652,
+        "max_grad_t": 6.297886371612549
+      },
+      "trace_total": [
+        5.9951934814453125,
+        5.888915538787842,
+        5.985894680023193,
+        5.987396240234375
+      ],
+      "trace_acoustic": [
+        5.965117454528809,
+        5.870429039001465,
+        5.941000461578369,
+        5.941882133483887
+      ],
+      "trace_smooth_s": [
+        0.02232321724295616,
+        0.024320974946022034,
+        0.023171523585915565,
+        0.023138893768191338
+      ],
+      "trace_smooth_t": [
+        6.893841145938495e-06,
+        0.03522143512964249,
+        0.005648739170283079,
+        0.004920803010463715
+      ],
+      "trace_curv": [
+        0.009498829022049904,
+        0.009627725929021835,
+        0.009560072794556618,
+        0.009561490267515182
+      ],
+      "trace_barrier": [
+        0.0030052480287849903,
+        0.001808413304388523,
+        0.004474720451980829,
+        0.00453701289370656
+      ],
+      "trace_default": [
+        4.69546557724243e-06,
+        0.034176625311374664,
+        0.011696326546370983,
+        0.011486368253827095
+      ]
+    }
+  ],
+  "consent_verified": true,
+  "consent_note": "Reference audio is synthetic (ElevenLabs voice 'Natasha \u2014 Valley girl'). Developer consents to using their own synthetic-TTS sample for Week-1 probe. No real-person voice cloning."
+}

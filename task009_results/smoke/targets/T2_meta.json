@@ -1,0 +1,24 @@
+{
+  "target": "T2",
+  "n_frames": 15,
+  "frication": true,
+  "description": "V/C sequence, constrictions@40/35/30 unvoiced, F0=120",
+  "constriction_area_cm2": 0.12,
+  "fricative_events": [
+    {
+      "segment": 1,
+      "section": 40,
+      "t_center": 3
+    },
+    {
+      "segment": 3,
+      "section": 35,
+      "t_center": 7
+    },
+    {
+      "segment": 5,
+      "section": 30,
+      "t_center": 11
+    }
+  ]
+}

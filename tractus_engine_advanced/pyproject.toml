@@ -1,0 +1,56 @@
+[project]
+name = "tractus_engine_advanced"
+version = "0.0.1"
+description = "Pure-JAX differentiable transmission-line vocal-tract simulator"
+requires-python = ">=3.11,<3.13"  # match tractus_controller; revisit jointly
+dependencies = [
+  "jax>=0.4.30",
+  "equinox>=0.11",
+  "numpy>=1.26",
+  "scipy>=1.12",
+  "cffi>=1.16",
+  "soundfile>=0.12",
+]
+
+[project.optional-dependencies]
+gpu = [
+  "jax[cuda12]>=0.4.30",
+]
+dev = [
+  "pytest>=8.0",
+  "pytest-xdist>=3.5",
+  "matplotlib>=3.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tractus_engine_advanced"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Default slice excludes parity/fp64 tests so `pytest -q` runs only
+# fp32-default tests. Parity tests run in subprocess isolation
+# (see tests/conftest.py) to avoid leaking jax_enable_x64=True into
+# any other test's process.
+addopts = "-ra -q -m 'not parity and not fp64_oracle'"
+markers = [
+    "parity: parity test against saved fp64 fixture (runs in isolated subprocess; opts-in to jax_enable_x64=True)",
+    "fp64_oracle: any other test that requires jax_enable_x64=True; must be subprocess-isolated",
+    "fp32_default: assertion that jax.config.x64_enabled is False under default config",
+    "gradient_fd: SOTA marker — full gradient finite-difference check (implementation in correctness/003)",
+    "energy_conservation: SOTA marker — energy-conservation invariant (helper in correctness/002)",
+    "m6_soft: soft-mode gradient stability + per-module FD agreement (correctness/003)",
+    "gesture_event: GestureEvent composition / dataclass-contract tests (blocked on correctness/004 / pretraining/003)",
+    "wall_static: wall-param anatomy-static enforcement (blocked on correctness/004)",
+    "frication_physical: frication physical-derivation tests (blocked on correctness/004)",
+    "channel_identifiability: channel-model identifiability ablation (blocked on infra/002 + pretraining/004)",
+    "non_circularity: non-circularity rule on body-model training (blocked on infra/002)",
+    "cheat_channel: cheat-channel ablation gate (blocked on infra/002)",
+    "fixture_oracle: re-tooled parity tests using saved fixtures only (no live oracle)",
+]
+
+[tool.uv]
+managed = true
